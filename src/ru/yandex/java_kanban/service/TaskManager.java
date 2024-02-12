@@ -1,9 +1,9 @@
-package servise;
+package ru.yandex.java_kanban.service;
 
-import model.Epic;
-import model.Subtask;
-import model.Task;
-import model.TaskStatus;
+import ru.yandex.java_kanban.model.Epic;
+import ru.yandex.java_kanban.model.Subtask;
+import ru.yandex.java_kanban.model.Task;
+import ru.yandex.java_kanban.model.TaskStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskManager {
-    public Map<Long, Task> tasks = new HashMap<>();
-    public Map<Long, Epic> epics = new HashMap<>();
-    public Map<Long, Subtask> subtasks = new HashMap<>();
+    private Map<Long, Task> tasks = new HashMap<>();
+    private Map<Long, Epic> epics = new HashMap<>();
+    private Map<Long, Subtask> subtasks = new HashMap<>();
     private long id = 1;
 
     public ArrayList<Task> getAllTasks() {
@@ -81,7 +81,7 @@ public class TaskManager {
     public Epic addEpic(Epic epic) {
         epic.setId(id++);
         epics.put(epic.getId(), epic);
-        epicStatus(epic.getId());
+        setEpicStatus(epic.getId());
         System.out.println("Создан эпик " + getEpicById(epic.getId()));
         return getEpicById(epic.getId());
     }
@@ -90,38 +90,38 @@ public class TaskManager {
         subtask.setId(id++);
         subtasks.put(subtask.getId(), subtask);
         epics.get(subtask.getEpicId()).addSubTaskId(subtask.getId());
-        epicStatus(subtask.getEpicId());
+        setEpicStatus(subtask.getEpicId());
         System.out.println("Создана подзадача " + getSubtaskById(subtask.getId()));
         return getSubtaskById(subtask.getId());
     }
 
     public Task updateTask(Task task) {
         Task updatedTask = getTaskById(task.getId());
-        if (task.getName() != null) updatedTask.setName(task.getName());
-        if (task.getDescription() != null) updatedTask.setDescription(task.getDescription());
-        if (task.getStatus() != null) updatedTask.setStatus(task.getStatus());
+        updatedTask.setName(task.getName());
+        updatedTask.setDescription(task.getDescription());
+        updatedTask.setStatus(task.getStatus());
         return updatedTask;
     }
 
     public Epic updateEpic(Epic epic) {
         Epic updatedEpic = getEpicById(epic.getId());
-        if (epic.getName() != null) updatedEpic.setName(epic.getName());
-        if (epic.getDescription() != null) updatedEpic.setDescription(epic.getDescription());
-        epicStatus(epic.getId());
+        updatedEpic.setName(epic.getName());
+        updatedEpic.setDescription(epic.getDescription());
+        setEpicStatus(epic.getId());
         return updatedEpic;
     }
 
     public Subtask updateSubtask(Subtask subtask) {
         Subtask updatedSubtask = getSubtaskById(subtask.getId());
-        if (subtask.getName() != null) updatedSubtask.setName(subtask.getName());
-        if (subtask.getDescription() != null) updatedSubtask.setDescription(subtask.getDescription());
-        if (subtask.getStatus() != null) updatedSubtask.setStatus(subtask.getStatus());
+        updatedSubtask.setName(subtask.getName());
+        updatedSubtask.setDescription(subtask.getDescription());
+        updatedSubtask.setStatus(subtask.getStatus());
         updatedSubtask.setEpicId(subtask.getEpicId());
-        epicStatus(subtask.getEpicId());
+        setEpicStatus(subtask.getEpicId());
         return updatedSubtask;
     }
 
-    public void deleteTaskByIg(long id) {
+    public void deleteTaskById(long id) {
         if (!tasks.containsKey(id)) {
             System.out.println("Нет задачи с таким id.");
             return;
@@ -167,7 +167,7 @@ public class TaskManager {
         return subtasksByEpicId;
     }
 
-    public void epicStatus(long epicId) {
+    public void setEpicStatus(long epicId) {
         Epic epic = getEpicById(epicId);
         if (epic.getSubTasksIds().isEmpty()) {
             epic.setStatus(TaskStatus.NEW);
@@ -187,5 +187,29 @@ public class TaskManager {
             return;
         }
         epic.setStatus(status);
+    }
+
+    public Map<Long, Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(Map<Long, Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Map<Long, Epic> getEpics() {
+        return epics;
+    }
+
+    public void setEpics(Map<Long, Epic> epics) {
+        this.epics = epics;
+    }
+
+    public Map<Long, Subtask> getSubtasks() {
+        return subtasks;
+    }
+
+    public void setSubtasks(Map<Long, Subtask> subtasks) {
+        this.subtasks = subtasks;
     }
 }

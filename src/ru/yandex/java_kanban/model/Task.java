@@ -1,39 +1,17 @@
-package model;
+package ru.yandex.java_kanban.model;
 
 import java.util.Objects;
 
 public class Task {
-    private String name;
-    private String description;
-    private long id;
-    private TaskStatus status;
+    protected String name;
+    protected String description;
+    protected long id;
+    protected TaskStatus status;
 
-    /** Конструктор для обновления задачи*/
-    public Task(String name, String description, long id, TaskStatus status) {
-        this.name = name;
-        this.description = description;
-        this.id = id;
-        this.status = status;
-    }
-
-    /** Конструктор для создания задачи*/
-    public Task(String name, String description, TaskStatus status) {
-        this.name = name;
-        this.description = description;
-        this.status = status;
-    }
-
-    /** Конструктор для наследника (эпика)*/
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
-    }
-
-    /** Конструктор для обновления наследника (эпика)*/
-    public Task(String name, String description, long id) {
-        this.name = name;
-        this.description = description;
-        this.id = id;
+        this.status = TaskStatus.NEW;
     }
 
     public String getName() {

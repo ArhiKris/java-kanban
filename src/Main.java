@@ -1,47 +1,52 @@
 /* Доброго времени суток.
-Очень страшненький тест получился =) Понимаю, что в следующем ТЗ будем учиться тестированию...
-Прошу обратить внимание на конструкторы в моделях. Правильно ли я их реализовала? Были сомнения по поводу эпиков.
-В остальном - все работает: создание, изменение, удаление всех типов задач,
-определение статусов у эпиков на основании подзадач.*/
+Спасибо за ревью, по замечаниям вроде все исправила =)*/
 
-import model.Epic;
-import model.Subtask;
-import model.Task;
-import model.TaskStatus;
-import servise.TaskManager;
+import ru.yandex.java_kanban.model.Epic;
+import ru.yandex.java_kanban.model.Subtask;
+import ru.yandex.java_kanban.model.Task;
+import ru.yandex.java_kanban.model.TaskStatus;
+import ru.yandex.java_kanban.service.TaskManager;
 
 public class Main {
 
     public static void main(String[] args) {
         TaskManager manager = new TaskManager();
 
-        manager.addTask(new Task("Купить квартиру", "Ну или для начала начать на нее откладывать!", TaskStatus.NEW));
-        manager.addTask(new Task("Выгулять кота", "Он не видел улицу 10000 лет!",
-                TaskStatus.NEW));
-        manager.addEpic(new Epic("Купить продукты", "Дождаться зарплаты и купить еды"));
-        manager.addSubtask(new Subtask("Составить список", "Ведь без него опять одна кока-кола...",
-                TaskStatus.DONE, 3));
-        manager.addSubtask(new Subtask("Разобрать покупки", "Положить продукты в холодильник",
-                TaskStatus.DONE, 3));
-        manager.addEpic(new Epic("Купить продукты", "Зарплата пришла пора идти вв магазин"));
-        manager.addSubtask(new Subtask("Поехать в магазин", "Покупка продуктов",
-                TaskStatus.IN_PROGRESS, 6));
+        Task task1 = new Task("Купить квартиру", "Ну или для начала начать на нее откладывать!");
+        manager.addTask(task1);
+        Task task2 = new Task("Выгулять кота", "Он не видел улицу 10000 лет!");
+        manager.addTask(task2);
+        Epic epic1 = new Epic("Купить продукты", "Дождаться зарплаты и купить еды");
+        manager.addEpic(epic1);
+        Subtask subtask1 = new Subtask("Составить список", "Ведь без него опять одна кока-кола...", 3);
+        manager.addSubtask(subtask1);
+        Subtask subtask2 = new Subtask("Разобрать покупки", "Положить продукты в холодильник", 3);
+        manager.addSubtask(subtask2);
+        Epic epic2 = new Epic("Записаться в спортзал", "Похудеть к лету");
+        manager.addEpic(epic2);
+        Subtask subtask3 = new Subtask("Купить новые кроссовки и спортивный костюм", "Покупка продуктов", 6);
+        manager.addSubtask(subtask3);
 
         System.out.println(manager.getAllTasks());
         System.out.println(manager.getAllEpics());
         System.out.println(manager.getAllSubtasks());
 
-        manager.updateTask(new Task("Отмыть кота", "Не умереть от потери крови", 2,
-                TaskStatus.DONE));
-        manager.updateEpic(new Epic("Купить продукты", "Купить еды", 3));
-        manager.updateSubtask(new Subtask("Отдохнуть", "Набраться сил перед походом в магазин...", 5,
-                TaskStatus.IN_PROGRESS,3));
+        task2.setId(2);
+        task2.setStatus(TaskStatus.DONE);
+        manager.updateTask(task2);
+
+        epic2.setId(6);
+        manager.updateEpic(epic2);
+
+        subtask2.setId(5);
+        subtask2.setStatus(TaskStatus.IN_PROGRESS);
+        manager.updateSubtask(subtask2);
 
         System.out.println(manager.getAllTasks());
         System.out.println(manager.getAllEpics());
         System.out.println(manager.getAllSubtasks());
 
-        manager.deleteTaskByIg(1);
+        manager.deleteTaskById(1);
         manager.deleteEpicById(6);
         manager.deleteSubtaskById(7);
 

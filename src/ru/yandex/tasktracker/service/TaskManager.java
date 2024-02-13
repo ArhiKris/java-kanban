@@ -1,9 +1,9 @@
-package ru.yandex.java_kanban.service;
+package ru.yandex.tasktracker.service;
 
-import ru.yandex.java_kanban.model.Epic;
-import ru.yandex.java_kanban.model.Subtask;
-import ru.yandex.java_kanban.model.Task;
-import ru.yandex.java_kanban.model.TaskStatus;
+import ru.yandex.tasktracker.model.Epic;
+import ru.yandex.tasktracker.model.Subtask;
+import ru.yandex.tasktracker.model.Task;
+import ru.yandex.tasktracker.model.TaskStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,7 +75,7 @@ public class TaskManager {
         task.setId(id++);
         tasks.put(task.getId(), task);
         System.out.println("Создана задача " + getTaskById(task.getId()));
-        return getTaskById(task.getId());
+        return task;
     }
 
     public Epic addEpic(Epic epic) {
@@ -83,7 +83,7 @@ public class TaskManager {
         epics.put(epic.getId(), epic);
         setEpicStatus(epic.getId());
         System.out.println("Создан эпик " + getEpicById(epic.getId()));
-        return getEpicById(epic.getId());
+        return epic;
     }
 
     public Subtask addSubtask(Subtask subtask) {
@@ -92,7 +92,7 @@ public class TaskManager {
         epics.get(subtask.getEpicId()).addSubTaskId(subtask.getId());
         setEpicStatus(subtask.getEpicId());
         System.out.println("Создана подзадача " + getSubtaskById(subtask.getId()));
-        return getSubtaskById(subtask.getId());
+        return subtask;
     }
 
     public Task updateTask(Task task) {

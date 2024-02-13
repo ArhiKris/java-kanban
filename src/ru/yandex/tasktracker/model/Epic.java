@@ -1,4 +1,4 @@
-package ru.yandex.java_kanban.model;
+package ru.yandex.tasktracker.model;
 
 import java.util.ArrayList;
 import java.util.List;

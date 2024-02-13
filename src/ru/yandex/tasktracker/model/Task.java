@@ -1,4 +1,4 @@
-package ru.yandex.java_kanban.model;
+package ru.yandex.tasktracker.model;
 
 import java.util.Objects;
 
@@ -54,6 +54,7 @@ public class Task {
         return getId() == task.getId();
     }
 
+    //Сгенерировано IDEA
     @Override
     public int hashCode() {
         return Objects.hash(getName(), getDescription(), getId(), getStatus());

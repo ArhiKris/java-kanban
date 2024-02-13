@@ -1,4 +1,4 @@
-package ru.yandex.java_kanban.model;
+package ru.yandex.tasktracker.model;
 
 public class Subtask extends Task {
     private long epicId;
@@ -16,6 +16,7 @@ public class Subtask extends Task {
         this.epicId = epicId;
     }
 
+    //toString сгенирирован IDEA
     @Override
     public String toString() {
         return "Subtask{" +

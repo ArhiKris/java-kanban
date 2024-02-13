@@ -1,11 +1,11 @@
 /* Доброго времени суток.
-Спасибо за ревью, по замечаниям вроде все исправила =)*/
+Теперь вроде точно все исправила =)*/
 
-import ru.yandex.java_kanban.model.Epic;
-import ru.yandex.java_kanban.model.Subtask;
-import ru.yandex.java_kanban.model.Task;
-import ru.yandex.java_kanban.model.TaskStatus;
-import ru.yandex.java_kanban.service.TaskManager;
+import ru.yandex.tasktracker.model.Epic;
+import ru.yandex.tasktracker.model.Subtask;
+import ru.yandex.tasktracker.model.Task;
+import ru.yandex.tasktracker.model.TaskStatus;
+import ru.yandex.tasktracker.service.TaskManager;
 
 public class Main {
 

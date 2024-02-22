@@ -27,10 +27,10 @@ public class Epic extends Task {
     public String toString() {
         return "Epic{" +
                 "subTasksIds=" + subTasksIds +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", id=" + id +
-                ", status=" + status +
+                ", name='" + super.getName() + '\'' +
+                ", description='" + super.getDescription() + '\'' +
+                ", id=" + super.getId() +
+                ", status=" + super.getStatus() +
                 '}';
     }
 }

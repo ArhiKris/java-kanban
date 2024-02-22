@@ -4,16 +4,15 @@ import ru.yandex.tasktracker.model.Epic;
 import ru.yandex.tasktracker.model.Subtask;
 import ru.yandex.tasktracker.model.Task;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
 public interface TaskManager {
-    ArrayList<Task> getAllTasks();
+    List<Task> getAllTasks();
 
-    ArrayList<Epic> getAllEpics();
+    List<Epic> getAllEpics();
 
-    ArrayList<Subtask> getAllSubtasks();
+    List<Subtask> getAllSubtasks();
 
     void deleteAllTasks();
 
@@ -49,5 +48,3 @@ public interface TaskManager {
 
     List<Task> getHistory();
 }
-
-

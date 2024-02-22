@@ -3,10 +3,10 @@ package ru.yandex.tasktracker.model;
 import java.util.Objects;
 
 public class Task {
-    protected String name;
-    protected String description;
-    protected long id;
-    protected TaskStatus status;
+    private String name;
+    private String description;
+    private long id;
+    private TaskStatus status;
 
     public Task(String name, String description) {
         this.name = name;
@@ -48,16 +48,19 @@ public class Task {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
         Task task = (Task) object;
         return getId() == task.getId();
     }
 
-    //Сгенерировано IDEA
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getDescription(), getId(), getStatus());
+        return Objects.hash(getId());
     }
 
     @Override

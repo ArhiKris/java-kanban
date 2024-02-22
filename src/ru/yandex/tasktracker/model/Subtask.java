@@ -16,15 +16,14 @@ public class Subtask extends Task {
         this.epicId = epicId;
     }
 
-    //toString сгенирирован IDEA
     @Override
     public String toString() {
         return "Subtask{" +
                 "epicId=" + epicId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", id=" + id +
-                ", status=" + status +
+                ", name='" + super.getName() + '\'' +
+                ", description='" + super.getDescription() + '\'' +
+                ", id=" + super.getId() +
+                ", status=" + super.getStatus() +
                 '}';
     }
 }
